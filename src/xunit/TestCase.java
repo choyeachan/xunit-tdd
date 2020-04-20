@@ -12,6 +12,7 @@ public class TestCase{
 	}
 
 	public void run(){
+		setUp();
 		try{
 			Method method = getClass().getMethod(name);
 			method.invoke(this);
@@ -19,5 +20,13 @@ public class TestCase{
 		catch(InvocationTargetException | IllegalAccessException | NoSuchMethodException e){
 			throw new RuntimeException();
 		}
+		tearDown();
 	}
+
+	public void setUp(){
+	}
+
+	public void tearDown(){
+	}
+
 }

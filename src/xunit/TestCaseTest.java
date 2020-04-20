@@ -6,12 +6,10 @@ public class TestCaseTest extends TestCase {
 		super(name);
 	}
 
-
-	public void testRunning(){
+	public void testTemplateMethod(){
 		WasRun wasRun = new WasRun("testMethod");
-		Assert.assertEquals(false, wasRun.wasRun); //false
 		wasRun.run();
-		Assert.assertEquals(true, wasRun.wasRun); //true
+		Assert.assertEquals("setUp testMethod tearDown", wasRun.log);
 	}
 
 

@@ -2,14 +2,25 @@ package src.xunit;
 
 public class WasRun extends TestCase{
 
-	public boolean wasRun = false;
+	public boolean wasSetUp;
+	public String log;
+
+	@Override
+	public void setUp(){
+		log="setUp";
+	}
 
 	public WasRun(String name){
 		super(name);
 	}	
 
 	public void testMethod(){
-		this.wasRun=true;
+		log += " testMethod";
+	}
+
+	@Override
+	public void tearDown(){
+		log += " tearDown";
 	}
 
 }
