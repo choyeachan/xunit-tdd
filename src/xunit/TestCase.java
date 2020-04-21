@@ -11,17 +11,21 @@ public class TestCase{
 		this.name = name;
 	}
 
-	public void run(){
+	public TestResult run(){
+		TestResult result = new TestResult();
+		result.testStarted();
 		setUp();
 		try{
 			Method method = getClass().getMethod(name);
 			method.invoke(this);
 		}
-		catch(InvocationTargetException | IllegalAccessException | NoSuchMethodException e){
-			throw new RuntimeException();
+		catch(Exception e){
+			result.testFailed();
 		}
 		tearDown();
+		return result; 
 	}
+
 
 	public void setUp(){
 	}
