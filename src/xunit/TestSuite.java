@@ -2,16 +2,15 @@ package src.xunit;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Arrays;
+import src.xunit.annotation.AnnotationUtil;
 
 public class TestSuite implements Test {
 
 	List<Test> tests = new ArrayList<>();
 
 	public TestSuite(Class<? extends Test> testClass) {
-
-		Arrays.stream(testClass.getMethods())
-			.filter(m -> m.getName().startsWith("test"))
+		AnnotationUtil.getMethodsAnnotatedWith(testClass, src.xunit.annotation.Test.class)
+			.stream()
 			.forEach(m -> {
 				try {
 					add(testClass.getConstructor(String.class).newInstance(m.getName()));

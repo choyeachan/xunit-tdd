@@ -1,5 +1,7 @@
 package src.xunit;
 
+import src.xunit.annotation.Test;
+
 public class TestCaseTest extends TestCase {
 	
 	public TestCaseTest(String name){
@@ -10,27 +12,31 @@ public class TestCaseTest extends TestCase {
 		return new TestSuite(TestCaseTest.class);
 	}
 
-	public void testTemplateMethod(){
+	@Test
+	public void templateMethod(){
 		WasRun wasRun = new WasRun("testMethod");
 		TestResult result = new TestResult();
 		wasRun.run(result);
 		Assert.assertEquals("setUp testMethod tearDown", wasRun.log);
 	}
 
-	public void testResult(){
+	@Test
+	public void result(){
 		WasRun wasRun = new WasRun("testMethod");
 		TestResult result = new TestResult();
 		wasRun.run(result);
 		Assert.assertEquals("1 run, 0 failed", result.getSummary());
 	}
 
-	public void testFailedResultFormatting(){
+	@Test
+	public void TestFailedResultFormatting(){
 		TestResult result = new TestResult();
 		result.testStarted();
 		result.testFailed();
 		Assert.assertEquals("1 run, 1 failed", result.getSummary());
 	}
 
+	@Test
 	public void testFailedResult(){
 		WasRun wasRun = new WasRun("testBrokenMethod");
 		TestResult result = new TestResult();
@@ -38,6 +44,7 @@ public class TestCaseTest extends TestCase {
 		Assert.assertEquals("1 run, 1 failed", result.getSummary());
 	}
 
+	@Test
 	public void testSuite(){
 		TestSuite suite = new TestSuite();
 		suite.add(new WasRun("testMethod"));
