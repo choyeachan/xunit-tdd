@@ -3,7 +3,7 @@ package src.xunit;
 import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
 
-public class TestCase{
+public class TestCase implements Test{
 
 	public final String name;
 
